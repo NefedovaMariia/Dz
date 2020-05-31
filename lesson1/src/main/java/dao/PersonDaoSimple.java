@@ -1,4 +1,5 @@
 package dao;
+
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -14,6 +15,9 @@ import org.supercsv.io.dozer.ICsvDozerBeanReader;
 import org.supercsv.prefs.CsvPreference;
 
 public class PersonDaoSimple implements PersonDao {
+
+    private static final String DEFAULT_INPUT_FILE_NAME = "test.csv";
+
     private static final String[] FIELD_MAPPING = new String[]{
             "number",
             "question",
@@ -22,6 +26,7 @@ public class PersonDaoSimple implements PersonDao {
             "answers[2]",
             "rightNumber"
     };
+
     private static final CellProcessor[] processors = new CellProcessor[]{
             new Optional(new ParseInt()),
             new Optional(),
@@ -32,17 +37,22 @@ public class PersonDaoSimple implements PersonDao {
     };
 
     public List<Questions> readQuestionsFromSource() throws Exception {
+
         List<Questions> questions = new ArrayList<>();
-        Locale locale = Locale.getDefault();
         ClassLoader classLoader = getClass().getClassLoader();
-        File source = new File(classLoader.getResource("test.csv").getFile());
-        ICsvDozerBeanReader pojoReader = new CsvDozerBeanReader(new FileReader(source),CsvPreference.STANDARD_PREFERENCE);
+        File source = new File(classLoader.getResource(DEFAULT_INPUT_FILE_NAME).getFile());
+
+        ICsvDozerBeanReader pojoReader =
+                new CsvDozerBeanReader(new FileReader(source), CsvPreference.STANDARD_PREFERENCE);
+
         pojoReader.getHeader(true);
         pojoReader.configureBeanMapping(Questions.class, FIELD_MAPPING);
+
         Questions question;
         while ((question = pojoReader.read(Questions.class, processors)) != null) {
             questions.add(question);
         }
+
         return questions;
     }
 }
