@@ -1,0 +1,22 @@
+{
+  "groups": [
+    {
+      "name": "application",
+      "type": "hw.service.questionServiceImpl",
+      "sourceType": "hw.service.questionServiceImpl"
+    }
+  ],
+  "properties": [
+    {
+      "name": "application.email",
+      "type": "java.lang.String",
+      "sourceType": "hw.service.questionServiceImpl"
+    },
+    {
+      "name": "application.questions",
+      "type": "java.util.List<hw.domain.Question>",
+      "sourceType": "hw.service.questionServiceImpl"
+    }
+  ],
+  "hints": []
+}
