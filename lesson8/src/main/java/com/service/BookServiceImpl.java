@@ -44,11 +44,6 @@ public class BookServiceImpl implements BookService {
         return bookDao.findByName(name);
     }
 
-   /* @Override
-    public void updateNameById(long id, String name) {
-        bookDao.updateNameById(id, name);
-    }*/
-
     @Override
     public void deleteById(long id) {
         bookDao.deleteById(id);

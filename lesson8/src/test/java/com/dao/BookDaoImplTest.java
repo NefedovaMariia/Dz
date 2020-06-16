@@ -77,19 +77,6 @@ class BookDaoImplTest {
         assertThat(books).containsOnlyOnce(firstBook);
     }
 
-    /*@DisplayName(" должен изменять книгу по ее Id")
-    @Test
-    void shouldUpdateBookNameById() {
-        val firstBook = em.find(Book.class, FIRST_BOOK_ID);
-        String oldName = firstBook.getTitle();
-        em.clear();
-
-        bookDaoImpl.updateNameById(FIRST_BOOK_ID, NEW_BOOK_TITLE);
-        val updatedBook = em.find(Book.class, FIRST_BOOK_ID);
-
-        assertThat(updatedBook.getTitle()).isNotEqualTo(oldName).isEqualTo(NEW_BOOK_TITLE);
-    }*/
-
     @DisplayName(" должен удалять книгу по ее Id")
     @Test
     void shouldDeleteBookNameById() {
